@@ -7,5 +7,4 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Student  extends user {
-    private  Long niveau;
 }
