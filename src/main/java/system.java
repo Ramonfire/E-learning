@@ -6,7 +6,8 @@ public class system {
      public static void main(String[] args) {
          user x = new professor();
          x= x.loging("test","test");
-         System.out.println(x.getFirstName());
+        //Integer session= x.CreateSession();
+         x.JoinSession(1234);
 
     }
 }

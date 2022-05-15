@@ -2,6 +2,7 @@ package Entities.users;
 
 import Entities.sessions.file;
 import Singleton.SingletonJDBC;
+import StreamingService.ScreenShare;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 @Data
 @NoArgsConstructor
@@ -113,9 +115,12 @@ public abstract class user {
     }
 
 
-    public void JoinSession(Long idSession){
-        if (idSession==Long.valueOf(0)){
+    public void JoinSession(Integer idSession){
+        ScreenShare screenShare= new ScreenShare();
+        if (idSession==0){
             System.err.println("Session doesnt exist");
+        }else {
+            screenShare.interactive("client 127.0.0.1 "+idSession);
         }
 
     }
@@ -124,8 +129,10 @@ public abstract class user {
 
     }
 
-    public Long CreateSession(){
-    Long sessionCreated=Long.valueOf(0);
+    public Integer CreateSession(){
+    ScreenShare screenShare = new ScreenShare();
+    Integer sessionCreated=getRandomNumber(1000,2000);
+    screenShare.interactive("server "+sessionCreated);
 
 
 
@@ -133,7 +140,13 @@ public abstract class user {
     }
 
     public void TerminateSession(){
+        ScreenShare screenShare = new ScreenShare();
+        screenShare.interactive("close");
 
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
     public void placeholder(){

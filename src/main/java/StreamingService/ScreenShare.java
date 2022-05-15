@@ -40,15 +40,11 @@ public class ScreenShare {
 	// move Mouse per five second while in client mode
 	private boolean mouseMove;
 
-	private void interactive() {
-		Scanner s = new Scanner(System.in);
-		while (true) {
+	public void interactive(String cmd) {
 			try {
 				InetAddress addr = InetAddress.getByName("localhost");
-				System.out.print(addr.getCanonicalHostName() + ">>> ");
-				if (s.hasNext()) {
-					intepretCommand(s.nextLine());
-				}
+				System.out.println("interpreting");
+					intepretCommand(cmd);
 
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
@@ -56,7 +52,7 @@ public class ScreenShare {
 				e.printStackTrace();
 			}
 
-		}
+
 
 	}
 
@@ -68,6 +64,7 @@ public class ScreenShare {
 	private void intepretCommand(String cmd) {
 		StringTokenizer tokenizer = new StringTokenizer(cmd);
 		String commandToken = tokenizer.nextToken();
+		System.out.println("token made");
 		if (commandToken.equals("server")) {
 			String port = tokenizer.nextToken();
 			server(Integer.parseInt(port));
@@ -88,6 +85,7 @@ public class ScreenShare {
 	}
 
 	private void client(String serverAddr, int port) {
+		System.out.println("client joined");
 		JFrame frame = new JFrame();
 		ImagePanel panel = new ImagePanel();
 		frame.setResizable(true);
@@ -135,12 +133,14 @@ public class ScreenShare {
 		}
 	}
 	private void server(int port) {
+		System.out.println("server starting");
 		try {
 			server = new ServerSocket(port);
 			Robot r = new Robot();
 
 			while(true){
 				try{
+					System.out.println("while ?");
 					socket = server.accept();
 					InetAddress addr = socket.getInetAddress();
 					System.out.println(
