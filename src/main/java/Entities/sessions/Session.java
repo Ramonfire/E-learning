@@ -1,6 +1,7 @@
 package Entities.sessions;
 
 import Entities.users.user;
+import StreamingService.ScreenShare;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +22,31 @@ public abstract class Session {
 
     private Integer State;
 
-    private void kickuser(){
+    public void kickuser(){
 
     }
 
+    public void  Sendchat(String chat){
+
+    }
+
+    public void StartSessiong(){
+        ScreenShare screenShare = new ScreenShare();
+        Integer sessionCreated=getRandomNumber(1000,2000);
+        //create Jframe here for chat and file share
+
+
+
+
+
+
+
+
+        screenShare.interactive("server "+sessionCreated);
+
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
 }
