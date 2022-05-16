@@ -23,7 +23,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class ScreenShare {
 
@@ -90,6 +90,7 @@ public class ScreenShare {
 		ImagePanel panel = new ImagePanel();
 		frame.setResizable(true);
 		frame.add(panel);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 		try {

@@ -1,13 +1,16 @@
 package FrontEnd;
 
+import Entities.shareClasses;
 import Entities.users.Student;
 import Entities.users.user;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Data
 public class LogIn extends  JFrame{
 
     private JTextField labelTextField;
@@ -16,7 +19,7 @@ public class LogIn extends  JFrame{
     private JTextField mail;
     private JButton logInButton;
     private JPasswordField pass;
-    user loggedIn=new Student();
+    public  static user loggedIn=new Student();
     Boolean logged = false;
 
     public LogIn() {
@@ -24,10 +27,16 @@ public class LogIn extends  JFrame{
         logInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
               logged= loggedIn.loging2(mail.getText(),pass.getText());
               if (logged){
-                OnLoggingSuccess();}else {
-                  JOptionPane.showMessageDialog(null,"Wrong email or password","invalid Credentials",JOptionPane.ERROR_MESSAGE);
+                  shareClasses.mail=mail.getText();
+                  shareClasses.pass=pass.getText();
+                OnLoggingSuccess();
+              }
+              else {
+                  JOptionPane.showMessageDialog(null,"Wrong email or password",
+                                            "invalid Credentials",JOptionPane.ERROR_MESSAGE);
               }
 
 

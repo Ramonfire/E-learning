@@ -11,5 +11,7 @@ public class file {
 
     private String name;
 
+    private String type;
+
     private Byte[] bytecode;
 }

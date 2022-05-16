@@ -33,6 +33,7 @@ public abstract class Session {
     public void StartSessiong(){
         ScreenShare screenShare = new ScreenShare();
         Integer sessionCreated=getRandomNumber(1000,2000);
+        this.setId(Long.valueOf(sessionCreated));
         //create Jframe here for chat and file share
 
 
