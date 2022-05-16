@@ -76,7 +76,29 @@ public abstract class user {
         return  logged;
     }
 
+    public Boolean loging2(String email,String password){
+        Boolean logged =false;
 
+
+        try{
+            Connection conn = SingletonJDBC.getConnection();
+            String querry = "select * from users where email=? and password=?";
+            PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(querry);
+            pstmt.setString(1,email);
+            pstmt.setString(2,password );
+
+            ResultSet r = pstmt.executeQuery();
+            if (r.next()){
+                logged=true;
+
+
+
+            }else {System.out.println("failure");}
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  logged;
+    }
 
     public List<user> getAllParticipants(Long idSession){
         LinkedList<user> Utilisateurs=new LinkedList<user>();
