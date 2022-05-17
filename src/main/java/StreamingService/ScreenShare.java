@@ -90,7 +90,6 @@ public class ScreenShare {
 		ImagePanel panel = new ImagePanel();
 		frame.setResizable(true);
 		frame.add(panel);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 		try {

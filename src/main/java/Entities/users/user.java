@@ -166,6 +166,7 @@ public abstract class user {
                 s= new Cours();
                 s.setId((Long)r.getLong("id"));
                 s.setState(r.getInt("State"));
+                shareClasses.joinedSession=s.getId().intValue();
                 stream.setSession(s);
                 if (s.getState()==1) {
                     screenShare.interactive("client 127.0.0.1 " + idSession);

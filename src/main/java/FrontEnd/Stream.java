@@ -14,17 +14,15 @@ import lombok.NoArgsConstructor;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 public class Stream extends JFrame {
@@ -37,7 +35,7 @@ public class Stream extends JFrame {
     private JTable fileTable;
     private JTable chatTable;
     private JTextField textField1;
-    private JButton button1;
+    private JButton sendButton;
     private user loggedin;
 
     public Stream(){
@@ -47,7 +45,13 @@ public class Stream extends JFrame {
         leaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               UpdateChatTable(shareClasses.sessionCreated);
+               dispose();
+            }
+        });
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendChat();
             }
         });
     }
@@ -104,6 +108,28 @@ public class Stream extends JFrame {
             e.printStackTrace();
         }
 
+    }
+
+    public void sendChat(){
+        try{
+            Connection conn = SingletonJDBC.getConnection();
+            String querry = "insert into chat values (?,?,?,?)";
+            PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(querry);
+            pstmt.setInt(1,shareClasses.joinedSession);
+            pstmt.setString(2,textField1.getText());
+            pstmt.setString(3,loggedin.getFirstName());
+            LocalDate now= LocalDate.now();
+            pstmt.setDate(4, java.sql.Date.valueOf(now));
+
+
+
+            int r = pstmt.executeUpdate();
+            if (r==1){
+
+            }else {System.out.println("failure");}
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     }
