@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 01:51 AM
+-- Generation Time: May 17, 2022 at 11:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -34,6 +34,15 @@ CREATE TABLE `chat` (
   `source` varchar(250) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id`, `content`, `source`, `date`) VALUES
+(1, 'this is a test', 'test', '0000-00-00 00:00:00'),
+(1, 'this is a test', 'user', '0000-00-00 00:00:00'),
+(1, 'adfaf', 'test', '2022-05-17 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -66,7 +75,9 @@ CREATE TABLE `session` (
 --
 
 INSERT INTO `session` (`id`, `State`, `idOrganisateur`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(1827, 1, 1),
+(1583, 1, 1);
 
 -- --------------------------------------------------------
 
